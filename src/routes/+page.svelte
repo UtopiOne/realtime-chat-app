@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Message from '$lib/components/Message.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -7,8 +8,12 @@
 	console.log(messages);
 </script>
 
-<h1 class="text-5xl text-center">Welcome to realtime chat app</h1>
+<main>
+	<h1 class="text-5xl text-center">Welcome to realtime chat app</h1>
 
-{#each messages as message, i (message.id)}
-	<p>{message.message_contents}</p>
-{/each}
+	<div class="flex flex-col gap-4 justify-center m-5">
+		{#each messages as message, i (message.id)}
+			<Message contents={message.contents} author={message.author} time={message.time} />
+		{/each}
+	</div>
+</main>
